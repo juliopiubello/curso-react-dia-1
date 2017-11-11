@@ -5,6 +5,9 @@ import FlatButton from 'material-ui/FlatButton';
 import {Card, CardActions, CardText, CardHeader} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 
+//lembrr de colocar pra fechar dps do post
+//colocar form para comentar
+
 class App extends Component {
 
   constructor(){
@@ -107,7 +110,7 @@ class App extends Component {
               <label> Texto </label>
               <TextField id="text-field-text" value={this.state.novoTexto} onChange={this.handleChangeTexto} />
               <br />
-              <FlatButton label="Submit" onClick={this.handleSubmit} />
+              <FlatButton label="Submit" onClick={this.handleSubmit} onClickCapture={this.handleReduce} />
             </div>
           </CardText>
           </Card>

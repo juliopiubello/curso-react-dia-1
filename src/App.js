@@ -10,7 +10,9 @@ class App extends Component {
 
     this.state={
       posts: [],
-      key: 1
+      key: 1,
+      novoName:'',
+      novoTexto:'',
     };
   }
 
@@ -26,7 +28,7 @@ class App extends Component {
 
   novoPost = () => {
     let name = prompt('Digite o nome do seu post');
-    let text = prompt('Digite o nome do seu post');
+    let text = prompt('Digite o texto do seu post');
     let post = {
       name: name,
       text: text
@@ -43,19 +45,25 @@ class App extends Component {
     localStorage.setItem('appState', actualState);
   }
 
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+
+
   render() {
     console.log(this.state)
     return (
         <MuiThemeProvider> 
           <div style={{padding:30, background:'#DDDDDD'}}>
-          <button onClick={this.limparStorage}> clear </button>
+          <FlatButton label={'Clear all posts from storage'} onClick={this.limparStorage} />
+          <FlatButton label={'Novo post'} onClick={this.novoPost} />
           {
             this.state.posts.map((post, index) => 
               <div key={index} >
                 <Post name={post.name} text={post.text} storageKey={index} />
               </div>)
           }
-          <FlatButton label={'Novo post'} onClick={this.novoPost} />
           </div>
         </MuiThemeProvider>
     );

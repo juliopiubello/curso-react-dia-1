@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card, CardActions, CardText} from 'material-ui/Card';
+import {Card, CardActions, CardText, CardHeader} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 class Post extends Component {
@@ -74,12 +74,13 @@ class Post extends Component {
     
     return (
     <Card style={{marginBottom:30}}>
+        
         <CardText>
             <h1> {this.props.text} </h1>
             <h3> {this.props.name} </h3>
             <h4> {'Likes: ' + this.state.likes} </h4>
         </CardText>
-        <CardActions>
+        <CardActions showExpandableButton={true} > 
             <FlatButton
             label={'Like'} 
             onClick={this.giveLike.bind(this)} 
@@ -92,10 +93,13 @@ class Post extends Component {
             label={'comentar'} 
             onClick={this.newComment.bind(this)} 
             />
+        </CardActions>
+
+            <CardText expandable={true}>
             {this.state.comments.map((text,index) => {
                 return (<h4 style={{padding:15, background:'#BBBBBB'}} key={index} > {text} </h4>);
             })}
-        </CardActions>
+            </CardText>
     </Card>
 
     );
